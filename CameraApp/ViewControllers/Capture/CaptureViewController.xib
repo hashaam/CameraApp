@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaptureViewController" customModule="BecomeAPresenter" customModuleProvider="target">
+            <connections>
+                <outlet property="alertView" destination="zFa-Jm-TkI" id="ABp-LW-q74"/>
+                <outlet property="overlayView" destination="9Dm-Mu-5aP" id="6b6-w8-EBl"/>
+                <outlet property="pointOfInterestView" destination="pWk-zi-9Tx" id="UIU-ZJ-7ab"/>
+                <outlet property="recordView" destination="hYC-qd-XSo" id="nTf-YP-WXC"/>
+                <outlet property="switchZoomView" destination="MiC-5Z-pJu" id="3cS-3c-As8"/>
+                <outlet property="timerView" destination="A8y-Oe-0kA" id="WCb-Df-2bK"/>
+                <outlet property="toggleCameraView" destination="VWw-pr-pbE" id="UJ2-ft-V5K"/>
+                <outlet property="torchView" destination="onI-2Q-hKf" id="mDu-iO-sJK"/>
+                <outlet property="videoPreviewView" destination="4s0-pR-Brd" id="VNW-ob-EKC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="visualEffectView" destination="eiQ-wh-xIe" id="TQX-mR-p2s"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-pR-Brd" userLabel="Video Preview View" customClass="VideoPreviewView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiQ-wh-xIe" userLabel="Visual Effect View">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SGa-nc-vN0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="regular"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Dm-Mu-5aP" userLabel="Overlay View">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="kKX-Rw-U0u" appends="YES" id="CCa-Lf-ocZ"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8y-Oe-0kA" userLabel="Timer View" customClass="TimerView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="157" y="74" width="100" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Clu-SR-opY"/>
+                        <constraint firstAttribute="height" constant="60" id="OwN-om-hek"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onI-2Q-hKf" userLabel="Torch View" customClass="TorchView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="30" y="74" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="DiA-Bq-AQz"/>
+                        <constraint firstAttribute="height" constant="60" id="mKh-tQ-cpU"/>
+                    </constraints>
+                </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFa-Jm-TkI" userLabel="Alert View" customClass="AlertView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="107" y="572" width="200" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" placeholder="YES" id="sm7-Rn-aqs"/>
+                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="usy-mc-ZJ3"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiC-5Z-pJu" userLabel="Switch Zoom View" customClass="SwitchZoomView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="127" y="662" width="160" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" placeholder="YES" id="spk-Mi-GMJ"/>
+                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="tf9-CM-Upq"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWw-pr-pbE" customClass="ToggleCameraView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="324" y="762" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="7e9-s1-BCn"/>
+                        <constraint firstAttribute="width" constant="60" id="rOl-Lt-h4y"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYC-qd-XSo" customClass="RecordView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="167" y="752" width="80" height="80"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="SBs-ll-cR9"/>
+                        <constraint firstAttribute="height" constant="80" id="yZl-hQ-qkN"/>
+                    </constraints>
+                </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWk-zi-9Tx" userLabel="Point Of Interest View" customClass="PointOfInterestView" customModule="BecomeAPresenter" customModuleProvider="target">
+                    <rect key="frame" x="167" y="408" width="80" height="80"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="7tz-Xm-1xB"/>
+                        <constraint firstAttribute="height" constant="80" id="eQD-64-fH1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="9Dm-Mu-5aP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1xL-7e-1qb"/>
+                <constraint firstItem="eiQ-wh-xIe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2Qq-tf-6zj"/>
+                <constraint firstItem="onI-2Q-hKf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="CDn-Pk-aRk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VWw-pr-pbE" secondAttribute="trailing" constant="30" placeholder="YES" id="CbY-VD-T3G"/>
+                <constraint firstItem="pWk-zi-9Tx" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" placeholder="YES" id="Fvc-GO-vqs"/>
+                <constraint firstItem="A8y-Oe-0kA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HpQ-OP-Wqz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Dm-Mu-5aP" secondAttribute="trailing" id="QgZ-Jy-jy2"/>
+                <constraint firstItem="9Dm-Mu-5aP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="R4S-7L-gSV"/>
+                <constraint firstItem="MiC-5Z-pJu" firstAttribute="top" secondItem="zFa-Jm-TkI" secondAttribute="bottom" constant="30" id="ToH-sb-9pD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eiQ-wh-xIe" secondAttribute="bottom" id="XMe-ts-Pxq"/>
+                <constraint firstItem="hYC-qd-XSo" firstAttribute="centerY" secondItem="VWw-pr-pbE" secondAttribute="centerY" placeholder="YES" id="Xat-Jk-58Y"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hYC-qd-XSo" secondAttribute="bottom" constant="30" placeholder="YES" id="YRY-q8-Rnf"/>
+                <constraint firstItem="zFa-Jm-TkI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Zuf-rg-Ro6"/>
+                <constraint firstItem="MiC-5Z-pJu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="bCK-qe-xUu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9Dm-Mu-5aP" secondAttribute="bottom" id="deJ-pX-gib"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eiQ-wh-xIe" secondAttribute="trailing" id="eEQ-Po-90S"/>
+                <constraint firstItem="4s0-pR-Brd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eFW-Un-Pof"/>
+                <constraint firstItem="hYC-qd-XSo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="jvK-7T-Fhb"/>
+                <constraint firstItem="pWk-zi-9Tx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="mzP-Uo-he5"/>
+                <constraint firstItem="onI-2Q-hKf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="pAB-Br-cCe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4s0-pR-Brd" secondAttribute="trailing" id="quS-9a-Qsv"/>
+                <constraint firstItem="hYC-qd-XSo" firstAttribute="top" secondItem="MiC-5Z-pJu" secondAttribute="bottom" constant="30" placeholder="YES" id="rJ2-1g-w2f"/>
+                <constraint firstAttribute="bottom" secondItem="4s0-pR-Brd" secondAttribute="bottom" id="uqf-j8-MRU"/>
+                <constraint firstItem="A8y-Oe-0kA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="vvd-pv-j0Z"/>
+                <constraint firstItem="4s0-pR-Brd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wTG-4e-BwB"/>
+                <constraint firstItem="eiQ-wh-xIe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="z1R-5g-90C"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="154"/>
+        </view>
+        <tapGestureRecognizer id="kKX-Rw-U0u">
+            <connections>
+                <action selector="overlayViewTapHandlerWithTapGestureRecognizer:" destination="-1" id="U2L-Rf-Vu5"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestCameraAuthorizationView" customModule="BecomeAPresenter" customModuleProvider="target">
+            <connections>
+                <outlet property="actionButton" destination="Uq6-4P-WyL" id="N3E-F4-GjK"/>
+                <outlet property="actionButtonWidthConstraint" destination="Lbs-5d-R1o" id="Lox-tE-sch"/>
+                <outlet property="cameraImageView" destination="xQb-MW-XpX" id="7wg-dE-11h"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="el5-AD-Mee"/>
+                <outlet property="messageLabel" destination="Hlh-4q-g0U" id="dRN-Zx-Oyx"/>
+                <outlet property="titleLabel" destination="e7T-1D-AhR" id="knJ-Pp-9fg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xQb-MW-XpX" userLabel="Camera Image View">
+                    <rect key="frame" x="177" y="194" width="60" height="58"/>
+                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="gN5-Av-j55"/>
+                        <constraint firstAttribute="height" constant="60" id="hEi-OT-Nbn"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Authorization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7T-1D-AhR" userLabel="Title Label">
+                    <rect key="frame" x="76.5" y="283.5" width="261.5" height="33.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We require camera authorization to provide you best experience." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlh-4q-g0U" userLabel="Message Label">
+                    <rect key="frame" x="20" y="333" width="374" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uq6-4P-WyL" userLabel="Action Button">
+                    <rect key="frame" x="167" y="404" width="80" height="50"/>
+                    <color key="backgroundColor" red="0.058823529411764705" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Lbs-5d-R1o"/>
+                        <constraint firstAttribute="height" constant="50" id="uvg-tX-1Lg"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Allow"/>
+                    <connections>
+                        <action selector="actionButtonHandlerWithBtn:" destination="-1" eventType="touchUpInside" id="wht-9v-kop"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="Hlh-4q-g0U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="6wL-2z-onM"/>
+                <constraint firstAttribute="trailing" secondItem="Hlh-4q-g0U" secondAttribute="trailing" constant="20" id="LPm-6T-CRR"/>
+                <constraint firstItem="Uq6-4P-WyL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="N88-6A-7nf"/>
+                <constraint firstItem="e7T-1D-AhR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="P6A-tF-QRa"/>
+                <constraint firstItem="Uq6-4P-WyL" firstAttribute="top" secondItem="Hlh-4q-g0U" secondAttribute="bottom" constant="30" id="bAF-dM-CPf"/>
+                <constraint firstItem="Hlh-4q-g0U" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cCz-ZS-ZPL"/>
+                <constraint firstItem="xQb-MW-XpX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hMQ-ee-CfT"/>
+                <constraint firstItem="e7T-1D-AhR" firstAttribute="top" secondItem="xQb-MW-XpX" secondAttribute="bottom" constant="30" id="ivD-Ww-77p"/>
+                <constraint firstItem="e7T-1D-AhR" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qxc-b4-WEo"/>
+                <constraint firstItem="Hlh-4q-g0U" firstAttribute="top" secondItem="e7T-1D-AhR" secondAttribute="bottom" constant="16" id="ypG-Vr-qbn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="141" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="camera" catalog="system" width="128" height="96"/>
+    </resources>
+</document>

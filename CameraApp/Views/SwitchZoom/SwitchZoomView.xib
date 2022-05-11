@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SwitchZoomView" customModule="BecomeAPresenter" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="hQv-Yu-MO1"/>
+                <outlet property="stackView" destination="Crv-Mw-YK4" id="rPP-7e-fHe"/>
+                <outlet property="telephotoButton" destination="TnC-zp-yRP" id="ZwE-Ce-tnl"/>
+                <outlet property="ultrawideButton" destination="spA-co-Sad" id="X6O-7l-0DU"/>
+                <outlet property="wideButton" destination="F0d-B7-SFG" id="M9e-7W-3w8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Crv-Mw-YK4">
+                    <rect key="frame" x="10" y="10" width="140" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spA-co-Sad" userLabel="Ultrawide Button">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="BackgroundAlpha60"/>
+                            <state key="normal" title=".5x">
+                                <color key="titleColor" name="TextOnBackgroundAlpha"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="ultrawideButtonHandlerWithBtn:" destination="-1" eventType="touchUpInside" id="a1e-7h-bHY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0d-B7-SFG" userLabel="Wide Button">
+                            <rect key="frame" x="50" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="BackgroundAlpha60"/>
+                            <state key="normal" title="1x">
+                                <color key="titleColor" name="TextOnBackgroundAlpha"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="wideButtonHandlerWithBtn:" destination="-1" eventType="touchUpInside" id="KQY-b2-cuu"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnC-zp-yRP" userLabel="Telephoto Button">
+                            <rect key="frame" x="100" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="BackgroundAlpha60"/>
+                            <state key="normal" title="2x">
+                                <color key="titleColor" name="TextOnBackgroundAlpha"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="telephotoButtonHandlerWithBtn:" destination="-1" eventType="touchUpInside" id="UHV-Kb-UWU"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Crv-Mw-YK4" secondAttribute="bottom" constant="10" id="0j0-LD-C2k"/>
+                <constraint firstItem="Crv-Mw-YK4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="GUb-BA-doy"/>
+                <constraint firstItem="Crv-Mw-YK4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Tu2-eS-LOa"/>
+                <constraint firstAttribute="trailing" secondItem="Crv-Mw-YK4" secondAttribute="trailing" constant="10" id="vEO-Ai-ols"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="132" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BackgroundAlpha60">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextOnBackgroundAlpha">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestMicrophoneAuthorizationView" customModule="BecomeAPresenter" customModuleProvider="target">
+            <connections>
+                <outlet property="actionButton" destination="qhq-ta-Zlv" id="COS-01-RLQ"/>
+                <outlet property="actionButtonWidthConstraint" destination="Ow5-cF-JHe" id="05y-lj-vc8"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="br7-Vz-wyz"/>
+                <outlet property="messageLabel" destination="wQF-Up-R97" id="wKu-6p-oIY"/>
+                <outlet property="microphoneImageView" destination="uhp-2x-OZn" id="h3v-18-0LJ"/>
+                <outlet property="titleLabel" destination="wiV-8b-nAw" id="f5Y-4D-lgc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uhp-2x-OZn" userLabel="Microphone Image View">
+                    <rect key="frame" x="177" y="193" width="60" height="60"/>
+                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="MTp-SW-ZCM"/>
+                        <constraint firstAttribute="width" constant="60" id="jm2-Jg-8aI"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone Authorization" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiV-8b-nAw" userLabel="Title Label">
+                    <rect key="frame" x="20" y="283.5" width="374" height="33.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We require microphone authorization to provide you best experience" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQF-Up-R97" userLabel="Message Label">
+                    <rect key="frame" x="20" y="333" width="374" height="41"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhq-ta-Zlv" userLabel="Action Button">
+                    <rect key="frame" x="167" y="404" width="80" height="50"/>
+                    <color key="backgroundColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Ow5-cF-JHe"/>
+                        <constraint firstAttribute="height" constant="50" id="XlE-R5-4oL"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Allow"/>
+                    <connections>
+                        <action selector="actionButtonHandlerWithBtn:" destination="-1" eventType="touchUpInside" id="hHb-Ly-2Hw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="uhp-2x-OZn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7NP-4E-c9d"/>
+                <constraint firstItem="wiV-8b-nAw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="8Eu-Vh-0bz"/>
+                <constraint firstItem="wQF-Up-R97" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="94m-E0-8ZH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wiV-8b-nAw" secondAttribute="trailing" constant="20" id="9R9-sm-Bf9"/>
+                <constraint firstItem="wQF-Up-R97" firstAttribute="top" secondItem="wiV-8b-nAw" secondAttribute="bottom" constant="16" id="WWg-rs-mgE"/>
+                <constraint firstItem="wiV-8b-nAw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eJL-tc-nkk"/>
+                <constraint firstAttribute="trailing" secondItem="wQF-Up-R97" secondAttribute="trailing" constant="20" id="nf1-QV-cW6"/>
+                <constraint firstItem="wiV-8b-nAw" firstAttribute="top" secondItem="uhp-2x-OZn" secondAttribute="bottom" constant="30" id="o3d-e8-Ov8"/>
+                <constraint firstItem="qhq-ta-Zlv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oIb-jS-5wQ"/>
+                <constraint firstItem="qhq-ta-Zlv" firstAttribute="top" secondItem="wQF-Up-R97" secondAttribute="bottom" constant="30" id="qT9-1j-BtG"/>
+                <constraint firstItem="wQF-Up-R97" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="vkE-zf-6SE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="132" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="mic" catalog="system" width="108" height="128"/>
+    </resources>
+</document>
