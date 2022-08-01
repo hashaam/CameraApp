@@ -35,6 +35,9 @@ class CaptureSessionController: NSObject {
     private var videoCaptureDevice: AVCaptureDevice?
     private var videoCaptureDeviceInput: AVCaptureDeviceInput?
     
+    private var audioCaptureDevice: AVCaptureDevice?
+    private var audioCaptureDeviceInput: AVCaptureDeviceInput?
+    
     private var zoomState = ZoomState.wide
     
     private var cameraPosition = CameraPosition.back
@@ -48,6 +51,7 @@ class CaptureSessionController: NSObject {
     override init() {
         super.init()
         videoCaptureDevice = getBackVideoCaptureDevice()
+        audioCaptureDevice = getMicrophoneCaptureDevice()
     }
     
     func getCaptureSession() -> AVCaptureSession {
@@ -78,6 +82,10 @@ class CaptureSessionController: NSObject {
     func toggleCamera(completionHandler: CaptureSessionToggleCompletionHandler? = nil) {
         if let videoCaptureDeviceInput = videoCaptureDeviceInput {
             captureSession.removeInput(videoCaptureDeviceInput)
+        }
+        
+        if let audioCaptureDeviceInput = audioCaptureDeviceInput {
+            captureSession.removeInput(audioCaptureDeviceInput)
         }
         
         DispatchQueue.main.async { [weak self] in
@@ -116,9 +124,15 @@ class CaptureSessionController: NSObject {
         
         guard let videoCaptureDevice = tmpVideoCaptureDevice else { return }
         self.videoCaptureDevice = videoCaptureDevice
-        guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: videoCaptureDevice) else { return }
-        self.videoCaptureDeviceInput = captureDeviceInput
-        guard captureSession.canAddInput(captureDeviceInput) else { return }
+        guard let videoCaptureDeviceInput = getCaptureDeviceInput(captureDevice: videoCaptureDevice) else { return }
+        self.videoCaptureDeviceInput = videoCaptureDeviceInput
+        guard captureSession.canAddInput(videoCaptureDeviceInput) else { return }
+        
+        guard let audioCaptureDevice = audioCaptureDevice else { return }
+        self.audioCaptureDevice = audioCaptureDevice
+        guard let audioCaptureDeviceInput = getCaptureDeviceInput(captureDevice: audioCaptureDevice) else { return }
+        self.audioCaptureDeviceInput = audioCaptureDeviceInput
+        guard captureSession.canAddInput(audioCaptureDeviceInput) else { return }
         
         NotificationCenter.default.removeObserver(
             self,
@@ -133,7 +147,8 @@ class CaptureSessionController: NSObject {
             object: videoCaptureDevice
         )
         
-        captureSession.addInput(captureDeviceInput)
+        captureSession.addInput(videoCaptureDeviceInput)
+        captureSession.addInput(audioCaptureDeviceInput)
         
         let movieFileOutput = AVCaptureMovieFileOutput()
         guard captureSession.canAddOutput(movieFileOutput) else { return }
@@ -288,6 +303,16 @@ private extension CaptureSessionController {
         
         if let wideAngleCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
             return wideAngleCamera
+        }
+        
+        return nil
+        
+    }
+    
+    func getMicrophoneCaptureDevice() -> AVCaptureDevice? {
+        
+        if let microphoneCaptureDevice = AVCaptureDevice.default(.builtInMicrophone, for: .audio, position: .unspecified) {
+            return microphoneCaptureDevice
         }
         
         return nil

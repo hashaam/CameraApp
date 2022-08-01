@@ -100,6 +100,9 @@ class CaptureViewController: UIViewController {
 
 private extension CaptureViewController {
     func initializeConstraints() {
+        guard portraitConstraints.isEmpty else { return }
+        guard landscapeConstraints.isEmpty else { return }
+        
         portraitConstraints = [
             recordView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             recordView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
