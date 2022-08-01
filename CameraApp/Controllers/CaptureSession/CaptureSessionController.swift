@@ -31,8 +31,10 @@ protocol CaptureSessionControllerDelegate: AnyObject {
 class CaptureSessionController: NSObject {
     
     private lazy var captureSession = AVCaptureSession()
-    private var captureDevice: AVCaptureDevice?
-    private var captureDeviceInput: AVCaptureDeviceInput?
+    
+    private var videoCaptureDevice: AVCaptureDevice?
+    private var videoCaptureDeviceInput: AVCaptureDeviceInput?
+    
     private var zoomState = ZoomState.wide
     
     private var cameraPosition = CameraPosition.back
@@ -45,7 +47,7 @@ class CaptureSessionController: NSObject {
     
     override init() {
         super.init()
-        captureDevice = getBackVideoCaptureDevice()
+        videoCaptureDevice = getBackVideoCaptureDevice()
     }
     
     func getCaptureSession() -> AVCaptureSession {
@@ -58,8 +60,8 @@ class CaptureSessionController: NSObject {
     }
     
     func getCameraTypes() -> [CameraType]? {
-        guard let captureDevice = captureDevice else { return nil }
-        switch captureDevice.deviceType {
+        guard let videoCaptureDevice = videoCaptureDevice else { return nil }
+        switch videoCaptureDevice.deviceType {
         case .builtInTripleCamera:
             return [.ultrawide, .wide, .telephoto]
         case .builtInDualWideCamera:
@@ -74,8 +76,8 @@ class CaptureSessionController: NSObject {
     }
     
     func toggleCamera(completionHandler: CaptureSessionToggleCompletionHandler? = nil) {
-        if let captureDeviceInput = captureDeviceInput {
-            captureSession.removeInput(captureDeviceInput)
+        if let videoCaptureDeviceInput = videoCaptureDeviceInput {
+            captureSession.removeInput(videoCaptureDeviceInput)
         }
         
         DispatchQueue.main.async { [weak self] in
@@ -85,13 +87,13 @@ class CaptureSessionController: NSObject {
                 self.previousZoomState = self.zoomState
                 self.zoomState = .wide 
                 if let frontCaptureDevice = self.getFrontVideoCaptureDevice() {
-                    self.initializeCaptureSession(captureDevice: frontCaptureDevice)
+                    self.initializeCaptureSession(videoCaptureDevice: frontCaptureDevice)
                 }
                 self.cameraPosition = .front
                 
             case .front:
                 if let backCaptureDevice = self.getBackVideoCaptureDevice() {
-                    self.initializeCaptureSession(captureDevice: backCaptureDevice)
+                    self.initializeCaptureSession(videoCaptureDevice: backCaptureDevice)
                 }
                 self.cameraPosition = .back
                 self.zoomState = self.previousZoomState
@@ -104,31 +106,31 @@ class CaptureSessionController: NSObject {
         }
     }
     
-    func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completionHandler: CaptureSessionInitializedCompletionHandler? = nil) {
+    func initializeCaptureSession(videoCaptureDevice: AVCaptureDevice? = nil, completionHandler: CaptureSessionInitializedCompletionHandler? = nil) {
         
-        var tmpCaptureDevice = self.captureDevice
+        var tmpVideoCaptureDevice = self.videoCaptureDevice
         
-        if let passedCaptureDevice = captureDevice {
-            tmpCaptureDevice = passedCaptureDevice
+        if let passedVideoCaptureDevice = videoCaptureDevice {
+            tmpVideoCaptureDevice = passedVideoCaptureDevice
         }
         
-        guard let captureDevice = tmpCaptureDevice else { return }
-        self.captureDevice = captureDevice
-        guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
-        self.captureDeviceInput = captureDeviceInput
+        guard let videoCaptureDevice = tmpVideoCaptureDevice else { return }
+        self.videoCaptureDevice = videoCaptureDevice
+        guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: videoCaptureDevice) else { return }
+        self.videoCaptureDeviceInput = captureDeviceInput
         guard captureSession.canAddInput(captureDeviceInput) else { return }
         
         NotificationCenter.default.removeObserver(
             self,
             name: .AVCaptureDeviceSubjectAreaDidChange,
-            object: captureDevice
+            object: videoCaptureDevice
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(subjectAreaDidChangeNotificationHandler(notification:)),
             name: .AVCaptureDeviceSubjectAreaDidChange,
-            object: captureDevice
+            object: videoCaptureDevice
         )
         
         captureSession.addInput(captureDeviceInput)
@@ -165,27 +167,27 @@ class CaptureSessionController: NSObject {
                   atPoint devicePoint: CGPoint,
                   shouldMonitorSubjectAreaChange: Bool) {
         
-        guard let captureDevice = captureDevice else { return }
+        guard let videoCaptureDevice = videoCaptureDevice else { return }
         
         do {
-            try captureDevice.lockForConfiguration()
+            try videoCaptureDevice.lockForConfiguration()
         } catch let error as NSError {
             print("failed to get lock for configuration on capture device with error \(error)")
             return
         }
         
-        if captureDevice.isFocusPointOfInterestSupported, captureDevice.isFocusModeSupported(focusMode) {
-            captureDevice.focusPointOfInterest = devicePoint
-            captureDevice.focusMode = focusMode
+        if videoCaptureDevice.isFocusPointOfInterestSupported, videoCaptureDevice.isFocusModeSupported(focusMode) {
+            videoCaptureDevice.focusPointOfInterest = devicePoint
+            videoCaptureDevice.focusMode = focusMode
         }
         
-        if captureDevice.isExposurePointOfInterestSupported, captureDevice.isExposureModeSupported(exposureMode) {
-            captureDevice.exposurePointOfInterest = devicePoint
-            captureDevice.exposureMode = exposureMode
+        if videoCaptureDevice.isExposurePointOfInterestSupported, videoCaptureDevice.isExposureModeSupported(exposureMode) {
+            videoCaptureDevice.exposurePointOfInterest = devicePoint
+            videoCaptureDevice.exposureMode = exposureMode
         }
         
-        captureDevice.isSubjectAreaChangeMonitoringEnabled = shouldMonitorSubjectAreaChange
-        captureDevice.unlockForConfiguration()
+        videoCaptureDevice.isSubjectAreaChangeMonitoringEnabled = shouldMonitorSubjectAreaChange
+        videoCaptureDevice.unlockForConfiguration()
         
     }
     
@@ -303,19 +305,19 @@ private extension CaptureSessionController {
     }
     
     func setVideoCaptureDeviceZoom(videoZoomFactor: CGFloat, animated: Bool = false, rate: Float = 0) {
-        guard let captureDevice = captureDevice else { return }
+        guard let videoCaptureDevice = videoCaptureDevice else { return }
         do {
-            try captureDevice.lockForConfiguration()
+            try videoCaptureDevice.lockForConfiguration()
         } catch let error {
             print("Failed to get lock configuration on capture device with error \(error)")
             return
         }
         if animated {
-            captureDevice.ramp(toVideoZoomFactor: videoZoomFactor, withRate: rate)
+            videoCaptureDevice.ramp(toVideoZoomFactor: videoZoomFactor, withRate: rate)
         } else {
-            captureDevice.videoZoomFactor = videoZoomFactor
+            videoCaptureDevice.videoZoomFactor = videoZoomFactor
         }
-        captureDevice.unlockForConfiguration()
+        videoCaptureDevice.unlockForConfiguration()
     }
     
     func getVideoZoomFactor() -> CGFloat {
@@ -330,8 +332,8 @@ private extension CaptureSessionController {
     }
     
     func getWideVideoZoomFactor() -> CGFloat {
-        guard let captureDevice = captureDevice else { return 1 }
-        switch captureDevice.deviceType {
+        guard let videoCaptureDevice = videoCaptureDevice else { return 1 }
+        switch videoCaptureDevice.deviceType {
         case .builtInTripleCamera:
             return 2
         case .builtInDualWideCamera:
@@ -342,8 +344,8 @@ private extension CaptureSessionController {
     }
     
     func getTelephotoVideoZoomFactor() -> CGFloat {
-        guard let captureDevice = captureDevice else { return 2 }
-        switch captureDevice.deviceType {
+        guard let videoCaptureDevice = videoCaptureDevice else { return 2 }
+        switch videoCaptureDevice.deviceType {
         case .builtInTripleCamera:
             return 3
         case .builtInDualCamera:
@@ -359,15 +361,15 @@ private extension CaptureSessionController {
     }
     
     func setTorchMode(torchMode: AVCaptureDevice.TorchMode) -> Bool {
-        guard let captureDevice = captureDevice else { return false }
+        guard let videoCaptureDevice = videoCaptureDevice else { return false }
         do {
-            try captureDevice.lockForConfiguration()
+            try videoCaptureDevice.lockForConfiguration()
         } catch let error as NSError {
             print("failed to get lock for configuration on capture device with error \(error)")
         }
-        guard captureDevice.isTorchAvailable else { return false }
-        captureDevice.torchMode = torchMode
-        captureDevice.unlockForConfiguration()
+        guard videoCaptureDevice.isTorchAvailable else { return false }
+        videoCaptureDevice.torchMode = torchMode
+        videoCaptureDevice.unlockForConfiguration()
         return true
     }
     
